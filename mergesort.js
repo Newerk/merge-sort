@@ -14,68 +14,37 @@ const mergeSort = (array) => {
             right.push(array[j]);
         }
 
-        // left.sort()
-        // right.sort()
-
-        mergeSort(left);
-        mergeSort(right);
-        return merge(left, right);
+        return merge(mergeSort(left), mergeSort(right));
     }
 };
 
 function merge(arrOne, arrTwo) {
     let mergedArr = [];
     let m = arrOne.length;
-    let n = arrTwo.length;
+    let n = arrTwo.length
     let i = 0;
     let j = 0;
-    let k = 0;
 
-    while (i < m && j < n) {
+    while (i < m && j < n ) {
         if (arrOne[i] <= arrTwo[j]) {
-            mergedArr[k++] = arrOne[i++];
+            mergedArr.push(arrOne[i++]);
 
         } else {
-            mergedArr[k++] = arrTwo[j++];
+            mergedArr.push(arrTwo[j++]);
         }
     }
     for (; i < m; i++) {
-        mergedArr[k++] = arrOne[i++];
+        mergedArr.push(arrOne[i++]);
     }
     for (; j < n; j++) {
-        mergedArr[k++] = arrTwo[j++];
+        mergedArr.push(arrTwo[j++]);
     }
+
+
     return mergedArr;
 }
 
 
 
-// // 2,5,8,9,12,15,17,18
-// // console.log(mergeSort([2, 8, 15, 18, 5, 9, 12, 17]));
-// // console.log(mergeSort([2, 4, 1, 6, 5, 3, 8, 7]));
-
-// // console.log(merge([2, 8, 15, 18], [5, 9, 12, 17]));
-
-
-
-let mySort = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] < arr[i + 1]) {
-            //nothing to be done, just iterate 
-            i++;
-
-        } else {
-            let end = arr[i + 1];
-            let current = arr[i];
-
-            //swap
-            arr[i] = end;
-            arr[i + 1] = current;
-
-            //iterate
-            i++;
-        }
-    }
-
-    return arr;
-}
+console.log(mergeSort([2, 8, 15, 18, 5, 9, 12, 17]));
+console.log(mergeSort([2, 4, 1, 6, 5, 3, 8, 7]));
